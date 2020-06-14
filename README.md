@@ -9,4 +9,4 @@ Project multimedia nhóm 10
 ## Run
 1. Nhập gloss tại file `gloss2pose/input-gloss.txt`
 2. Chạy file `gloss2pose/gloss2pose.py`.
-3. Tập pose tương ứng sẽ được sinh ra tại `gloss2pose/lookup/conbined-pose.mov`
+3. Chuỗi pose tương ứng sẽ được sinh ra tại `gloss2pose/lookup/conbined-pose.mov`
