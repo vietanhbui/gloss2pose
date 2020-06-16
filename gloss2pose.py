@@ -66,17 +66,36 @@ def get_pose_files(lookup_folder, pose_ids):
     return pose_filepaths
 
 
+def video_to_jpg(video_filepath, jpg_directory):
+    unformatted_cmd = "ffmpeg -i {} {} -hide_banner"
+
+    cmd = unformatted_cmd.format(
+        video_filepath,
+        os.path.join(jpg_directory, "video-%06d.jpg")
+    )
+
+    run_bash_cmd(cmd)
+
+    return jpg_directory
+
+
 if __name__ == "__main__":
     with open("input-gloss.txt", "r") as file_obj:
         gloss = file_obj.read().strip().split()
     with open('path.json') as path_file:
         data = json.load(path_file)
-    # video_metadata_file_path = "D:/Hust/Multimedia/test/video-metadata.csv"
     video_metadata_file_path = data['video_metadata_file_path']
     pose_ids = get_pose_ids(video_metadata_file_path, gloss)
-    # lookup_folder = "D:\\Hust\\Multimedia\\test\\lookup"
     lookup_folder = data['lookup_folder']
     pose_filepaths = get_pose_files(lookup_folder, pose_ids)
     combined_video_filepath = os.path.join(
         os.path.dirname(pose_filepaths[0]), "combined-pose.mov")
     concat_videos(pose_filepaths, combined_video_filepath)
+    jpg_directory = os.path.join(
+        os.path.dirname(combined_video_filepath),
+        "jpg/"
+    )
+
+    os.makedirs(jpg_directory, exist_ok=True)
+
+    video_to_jpg(combined_video_filepath, jpg_directory)
