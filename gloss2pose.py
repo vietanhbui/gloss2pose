@@ -1,8 +1,5 @@
-import csv
-import pyglet
 import os
 import pandas as pd
-import sys
 from subprocess import Popen, PIPE, CalledProcessError
 import json
 
@@ -86,6 +83,7 @@ if __name__ == "__main__":
         data = json.load(path_file)
     video_metadata_file_path = data['video_metadata_file_path']
     pose_ids = get_pose_ids(video_metadata_file_path, gloss)
+    print(pose_ids)
     lookup_folder = data['lookup_folder']
     pose_filepaths = get_pose_files(lookup_folder, pose_ids)
     combined_video_filepath = os.path.join(
