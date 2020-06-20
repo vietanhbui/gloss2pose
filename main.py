@@ -373,9 +373,10 @@ def write_concat_input_file(video_filepaths, input_filepath):
 
 def concat_videos(video_filepaths, output_filepath):
     input_filepath = os.path.join(
-        os.path.dirname(video_filepaths[0]),
-        "input.txt"
+        os.path.dirname(output_filepath),
+        "output.txt"
     )
+    print(video_filepaths[0], output_filepath)
     video_filenames = [os.path.basename(f) for f in video_filepaths]
     write_concat_input_file(video_filenames, input_filepath)
 
@@ -429,17 +430,24 @@ def removeEndItem(x):
     return False
 
 if __name__ == "__main__":
-  with open("input-gloss.txt", "r") as file_obj:
-    gloss = file_obj.read().strip()
   with open('path.json') as path_file:
     data = json.load(path_file)
+    
+  with open(data["input_gloss_path"], "r") as file_obj:
+    gloss = file_obj.read().strip()
+    
   pose_ids = translate(gloss)
   pose_ids = pose_ids.split(" ")
   # remove null item
   pose_ids = list(filter(removeEndItem, pose_ids))
+
   lookup_folder = data['lookup_folder']
   pose_filepaths = get_pose_files(lookup_folder, pose_ids)
-  combined_video_filepath = os.path.join(os.path.dirname(pose_filepaths[0]), "combined-pose.mov")
+
+  output_pose_path = data["output_pose_path"]
+  os.makedirs(output_pose_path, exist_ok=True)
+  
+  combined_video_filepath = os.path.join(output_pose_path, "combined-pose.mov")
   concat_videos(pose_filepaths, combined_video_filepath)
 
   jpg_directory = os.path.join(os.path.dirname(combined_video_filepath), "jpg")

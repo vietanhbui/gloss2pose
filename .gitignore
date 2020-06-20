@@ -140,3 +140,4 @@ dmypy.json
 
 lookup/
 training_checkpoints/
+output/
