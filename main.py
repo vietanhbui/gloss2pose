@@ -85,16 +85,16 @@ input_tensor_train, input_tensor_val, target_tensor_train, target_tensor_val = t
 # Show length
 # print(len(input_tensor_train), len(target_tensor_train), len(input_tensor_val), len(target_tensor_val))
 
-def convert(lang, tensor):
-  for t in tensor:
-    if t!=0:
-      print ("%d ----> %s" % (t, lang.index_word[t]))
+# def convert(lang, tensor):
+#   for t in tensor:
+#     if t!=0:
+#       print ("%d ----> %s" % (t, lang.index_word[t]))
 
-print ("Input Language; index to word mapping")
-convert(inp_lang, input_tensor_train[0])
-print ()
-print ("Target Language; index to word mapping")
-convert(targ_lang, target_tensor_train[0])
+# print ("Input Language; index to word mapping")
+# convert(inp_lang, input_tensor_train[0])
+# print ()
+# print ("Target Language; index to word mapping")
+# convert(targ_lang, target_tensor_train[0])
 
 BUFFER_SIZE = len(input_tensor_train)
 BATCH_SIZE = 64
@@ -341,7 +341,7 @@ def plot_attention(attention, sentence, predicted_sentence):
   ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
   ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
 
-  # plt.show()
+  plt.show()
 
 def translate(sentence):
   result, sentence, attention_plot = evaluate(sentence)
