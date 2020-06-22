@@ -1,6 +1,0 @@
-{
-    "lookup_folder": "D:\\Hust\\Multimedia\\gloss2pose\\lookup",
-    "video_metadata_file_path": "D:/Hust/Multimedia/gloss2pose/video-metadata.csv",
-    "input_gloss_path": "D:\\Hust\\Multimedia\\gloss2pose\\input\\gloss.txt",
-    "output_pose_path": "D:\\Hust\\Multimedia\\gloss2pose\\output"
-}

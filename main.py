@@ -430,10 +430,7 @@ def removeEndItem(x):
     return False
 
 if __name__ == "__main__":
-  with open('path.json') as path_file:
-    data = json.load(path_file)
-    
-  with open(data["input_gloss_path"], "r") as file_obj:
+  with open("./input/gloss.txt", "r") as file_obj:
     gloss = file_obj.read().strip()
     
   pose_ids = translate(gloss)
@@ -441,10 +438,10 @@ if __name__ == "__main__":
   # remove null item
   pose_ids = list(filter(removeEndItem, pose_ids))
 
-  lookup_folder = data['lookup_folder']
+  lookup_folder = "./lookup/"
   pose_filepaths = get_pose_files(lookup_folder, pose_ids)
 
-  output_pose_path = data["output_pose_path"]
+  output_pose_path = "./output/"
   os.makedirs(output_pose_path, exist_ok=True)
   
   combined_video_filepath = os.path.join(output_pose_path, "combined-pose.mov")
