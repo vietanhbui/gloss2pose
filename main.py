@@ -376,7 +376,6 @@ def concat_videos(video_filepaths, output_filepath):
         os.path.dirname(output_filepath),
         "output.txt"
     )
-    print(video_filepaths[0], output_filepath)
     video_filenames = [os.path.basename(f) for f in video_filepaths]
     write_concat_input_file(video_filenames, input_filepath)
 
@@ -386,6 +385,7 @@ def concat_videos(video_filepaths, output_filepath):
         input_filepath,
         output_filepath
     )
+    # ffmpeg -f concat -safe 0 -i D:\Hust\Multimedia\gloss2pose\output\output.txt -codec copy -y D:\Hust\Multimedia\gloss2pose\output\combined-pose.mov
     run_bash_cmd(cmd)
     return output_filepath
 
